@@ -15,7 +15,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/terraform"
 
-	"github.com/upbound/upjet-provider-template/apis/v1beta1"
+	"github.com/niklasbeinghaus/provider-bitwarden/apis/v1beta1"
 )
 
 const (
@@ -24,7 +24,7 @@ const (
 	errGetProviderConfig    = "cannot get referenced ProviderConfig"
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
-	errUnmarshalCredentials = "cannot unmarshal template credentials as JSON"
+	errUnmarshalCredentials = "cannot unmarshal bitwarden credentials as JSON"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -63,10 +63,26 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 
 		// Set credentials in Terraform provider configuration.
-		/*ps.Configuration = map[string]any{
-			"username": creds["username"],
-			"password": creds["password"],
-		}*/
+		ps.Configuration = map[string]any{}
+		if val, ok := creds["email"]; ok {
+			ps.Configuration["email"] = val
+		}
+		if val, ok := creds["client_id"]; ok {
+			ps.Configuration["client_id"] = val
+		}
+		if val, ok := creds["client_secret"]; ok {
+			ps.Configuration["client_secret"] = val
+		}
+		if val, ok := creds["master_password"]; ok {
+			ps.Configuration["master_password"] = val
+		}
+		if val, ok := creds["server"]; ok {
+			ps.Configuration["server"] = val
+		}
+		if ps.Configuration["server"] == nil {
+			// If "server" key is missing or has a nil value, set the default value.
+			ps.Configuration["server"] = "https://vault.bitwarden.com"
+		}
 		return ps, nil
 	}
 }

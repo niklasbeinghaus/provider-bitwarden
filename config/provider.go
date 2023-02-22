@@ -10,12 +10,14 @@ import (
 
 	ujconfig "github.com/upbound/upjet/pkg/config"
 
-	"github.com/upbound/upjet-provider-template/config/null"
+	"github.com/niklasbeinghaus/provider-bitwarden/config/folder"
+	"github.com/niklasbeinghaus/provider-bitwarden/config/item_login"
+	"github.com/niklasbeinghaus/provider-bitwarden/config/item_secure_note"
 )
 
 const (
-	resourcePrefix = "template"
-	modulePath     = "github.com/upbound/upjet-provider-template"
+	resourcePrefix = "bitwarden"
+	modulePath     = "github.com/niklasbeinghaus/provider-bitwarden"
 )
 
 //go:embed schema.json
@@ -34,7 +36,9 @@ func GetProvider() *ujconfig.Provider {
 
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
-		null.Configure,
+		folder.Configure,
+		item_login.Configure,
+		item_secure_note.Configure,
 	} {
 		configure(pc)
 	}
