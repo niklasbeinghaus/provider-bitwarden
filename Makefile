@@ -10,7 +10,7 @@ export TERRAFORM_PROVIDER_SOURCE := maxlaverse/terraform-provider-bitwarden
 export TERRAFORM_PROVIDER_REPO := https://github.com/maxlaverse/terraform-provider-bitwarden
 export TERRAFORM_PROVIDER_VERSION := 0.5.0
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-bitwarden
-export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-bitwarden_v0.5.0
+export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-bitwarden_0.5.0
 export TERRAFORM_DOCS_PATH := docs/resources
 
 PLATFORMS ?= linux_amd64 linux_arm64

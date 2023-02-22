@@ -25,7 +25,7 @@ ENV TF_FORK 0
 RUN mkdir -p ${PLUGIN_DIR}
 
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_${TARGETOS}_${TARGETARCH}.zip /tmp
-ADD ${TERRAFORM_PROVIDER_REPO}/releases/download/v${TERRAFORM_PROVIDER_VERSION}/${TERRAFORM_NATIVE_PROVIDER_BINARY}_${TARGETOS}_${TARGETARCH}.zip /tmp
+ADD https://github.com/maxlaverse/terraform-provider-bitwarden/releases/download/v${TERRAFORM_PROVIDER_VERSION}/${TERRAFORM_NATIVE_PROVIDER_BINARY}_${TARGETOS}_${TARGETARCH}.zip /tmp
 ADD terraformrc.hcl ${TF_CLI_CONFIG_FILE}
 
 RUN unzip /tmp/terraform_${TERRAFORM_VERSION}_${TARGETOS}_${TARGETARCH}.zip -d /usr/local/bin \
