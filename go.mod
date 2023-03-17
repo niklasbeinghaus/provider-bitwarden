@@ -9,7 +9,7 @@ require (
 	github.com/upbound/upjet v0.8.0-rc.0.0.20221024111721-c82119f5ef34
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 	k8s.io/apimachinery v0.25.0
-	k8s.io/client-go v0.25.0
+	k8s.io/client-go v11.0.0+incompatible
 	sigs.k8s.io/controller-runtime v0.12.1
 	sigs.k8s.io/controller-tools v0.8.0
 )
